@@ -1,3 +1,3 @@
-# Bookstore using Redux
+# Server side of Bookstore
 
-This project was created using Redux and React libraries to be used in my future yoga website with videos and yoga plans. Redux was used to get information from the server and store it
+The server side was created by using Node.js, and Express.js and I used MongoDB for the database. It was created for my future yoga website with videos and yoga plans. 

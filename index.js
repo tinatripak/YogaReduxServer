@@ -27,7 +27,7 @@ app.listen(PORT, () => {
 });
 
 app.use(cors({
-  origin: "https://yoga-redux-client.vercel.app",
+  origin: "https://yoga-redux.vercel.app",
   methods: "GET, POST, PUT, DELETE, OPTIONS",
   allowedHeaders: "Access-Control-Allow-Origin, Content-Type, Authorization",
   credentials: true,

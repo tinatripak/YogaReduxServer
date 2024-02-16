@@ -7,9 +7,7 @@ const GetVideos = async (req, res) => {
     if (response) {
       res.status(200).send({ success: true, data: response });
     } else {
-      res
-        .status(200)
-        .send({ success: true, msg: "Videos are not found" });
+      res.status(200).send({ success: true, msg: "Videos are not found" });
     }
   } catch (error) {
     res.status(404).send({ success: false, msg: error });
@@ -25,9 +23,7 @@ const GetVideoById = async (req, res) => {
     if (response) {
       res.status(200).send({ success: true, data: response });
     } else {
-      res
-        .status(200)
-        .send({ success: true, msg: "Video is not found by ID" });
+      res.status(200).send({ success: true, msg: "Video is not found by ID" });
     }
   } catch (error) {
     res.status(404).send({ success: false, msg: error });
@@ -56,7 +52,7 @@ const GetVideoByTypeName = async (req, res) => {
 
 const CreateVideo = async (req, res) => {
   try {
-    const { name, instructorId, duration, level, video } = req.body;
+    const { name, instructorId, duration, level, video, photo } = req.body;
 
     const existingVideo = await Video.findOne({ name });
 
@@ -71,7 +67,8 @@ const CreateVideo = async (req, res) => {
       instructorId,
       duration,
       level,
-      video
+      video,
+      photo,
     });
 
     await createdVideo.save();
@@ -88,7 +85,7 @@ const CreateVideo = async (req, res) => {
 
 const UpdateVideoById = async (req, res) => {
   try {
-    const { name, instructorId, duration, level, video } = req.body;
+    const { name, instructorId, duration, level, video, photo } = req.body;
     const updatedVideo = await Video.findOneAndUpdate(
       { _id: req.params.id },
       {
@@ -97,11 +94,12 @@ const UpdateVideoById = async (req, res) => {
         duration: duration,
         level: level,
         video: video,
+        photo: photo,
       },
       {
         upsert: true,
         new: true,
-      },
+      }
     );
     res.json({
       message: "Video successfully updated",
@@ -122,9 +120,7 @@ const DeleteVideoById = async (req, res) => {
         msg: "The Video has been removed",
       });
     } else {
-      res
-        .status(200)
-        .send({ success: false, msg: "Video was found" });
+      res.status(200).send({ success: false, msg: "Video was found" });
     }
   } catch (error) {
     res.status(404).send({ success: false, msg: error });
@@ -135,5 +131,5 @@ module.exports = {
   GetVideoById,
   CreateVideo,
   UpdateVideoById,
-  DeleteVideoById
+  DeleteVideoById,
 };

@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require('cors');
+const cors = require("cors");
 const app = express();
 require("dotenv").config();
 
@@ -26,18 +26,23 @@ app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });
 
-app.use(cors({
-  origin: "https://yoga-redux.vercel.app",
-  methods: "GET, POST, PUT, DELETE, OPTIONS",
-  allowedHeaders: "Access-Control-Allow-Origin, Content-Type, Authorization",
-  credentials: true,
-}));
+app.use(
+  cors({
+    origin: [
+      "https://yoga-redux.vercel.app",
+      "https://yoga-namaste.vercel.app",
+    ],
+    methods: "GET, POST, PUT, DELETE, OPTIONS",
+    allowedHeaders: "Access-Control-Allow-Origin, Content-Type, Authorization",
+    credentials: true,
+  })
+);
 
 app.use(cookieParser());
 app.use(express.json());
 
 app.use("/", authRoute);
-app.use("/admin", adminRoute); 
+app.use("/admin", adminRoute);
 app.use("/instructor", instructorRoute);
 app.use("/plan", planRoute);
 app.use("/video", videoRote);

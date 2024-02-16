@@ -23,6 +23,11 @@ const videoSchema = new mongoose.Schema({
     required: [true, "The video is required"],
     unique: true,
   },
+  photo: {
+    type: String,
+    required: [true, "The photo is required"],
+    unique: true,
+  },
   createdAt: {
     type: Date,
   },
